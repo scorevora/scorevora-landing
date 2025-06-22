@@ -20,12 +20,13 @@
     }
     header h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 2.5em;
       color: #00FF9D;
+      animation: pulse 2s infinite;
     }
     header p {
       margin: 5px 0;
-      font-size: 1em;
+      font-size: 1.2em;
       color: #007BFF;
     }
     section {
@@ -41,6 +42,10 @@
       text-decoration: none;
       border-radius: 6px;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #005FCC;
     }
     .feature {
       margin: 30px 0;
@@ -54,7 +59,44 @@
       background-color: #1C1C1E;
       font-size: 0.9em;
     }
+    .testimonial {
+      background-color: #121212;
+      margin: 10px auto;
+      padding: 15px;
+      border-left: 4px solid #00FF9D;
+      width: 80%;
+      font-style: italic;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .countdown {
+      font-size: 1.5em;
+      color: #FF3B30;
+      margin: 20px 0;
+    }
   </style>
+  <script>
+    // Simple Countdown Timer for Launch
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 7); // 7 days from now
+
+    function updateCountdown() {
+      const now = new Date();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
 </head>
 <body>
   <header>
@@ -66,6 +108,7 @@
     <h2>Every Match. Every Prediction.</h2>
     <p>Get real-time scores and bold predictions — all in one clean, mobile-first platform.</p>
     <p>✅ Over 1.5 • ✅ BTTS • ✅ Win/Draw/Lose</p>
+    <div class="countdown" id="countdown"></div>
     <a href="#" class="cta-button">See Live Games</a>
     <a href="#" class="cta-button">Join WhatsApp Tips Group</a>
   </section>
@@ -79,9 +122,9 @@
 
   <section class="feature">
     <h2>Why Bettors Love Us</h2>
-    <p>“No more switching apps. I see scores and tips together.”</p>
-    <p>“Scorevora’s Over 1.5 tips hit more than any Telegram group I’ve used.”</p>
-    <p>“Perfect for matchday betting. Super fast.”</p>
+    <div class="testimonial">“No more switching apps. I see scores and tips together.”</div>
+    <div class="testimonial">“Scorevora’s Over 1.5 tips hit more than any Telegram group I’ve used.”</div>
+    <div class="testimonial">“Perfect for matchday betting. Super fast.”</div>
   </section>
 
   <section class="feature">
